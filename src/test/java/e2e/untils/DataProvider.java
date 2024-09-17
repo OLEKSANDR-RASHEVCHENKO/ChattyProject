@@ -10,10 +10,16 @@ public class DataProvider {
     @org.testng.annotations.DataProvider
     public Iterator<Object[]> invalidLoginData(){
         List<Object[]> list = new ArrayList<>();
-        list.add(new Object[]{"Admin", faker.internet().password(),"with_invalid_password"});
-        list.add(new Object[]{faker.internet().emailAddress(),"admin123", "with_invalid_email"});
-        list.add(new Object[]{faker.internet().emailAddress(),faker.internet().password(), "with_invalid_data"});
-        list.add(new Object[]{"","", "with_empty_data"});
+        list.add(new Object[]{faker.name().firstName() + faker.number().digit(), "Gazmanov1234",true,false,false});
+        list.add(new Object[]{"bg","Gazmanov1234", true,false,false});
+        list.add(new Object[]{faker.lorem().characters(115) + "@example","Gazmanov1234",true,false,false});
+
+        list.add(new Object[]{"oleksandr@gmail.com",faker.lorem().characters(5),false,true,false});
+        list.add(new Object[]{"oleksandr@gmail.com",faker.lorem().characters(101),false,true,false});
+        list.add(new Object[]{faker.name().firstName() + faker.number().digit(),faker.lorem().characters(5),false,false,true});
+        list.add(new Object[]{faker.lorem().characters(115) + "@example",faker.lorem().characters(101),false,false,true});
+
+
         return list.iterator();
     }
     @org.testng.annotations.DataProvider
