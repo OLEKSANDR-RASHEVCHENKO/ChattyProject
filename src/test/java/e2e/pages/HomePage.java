@@ -27,6 +27,26 @@ public class HomePage extends BasePage {
     @FindBy(xpath = "//span[@data-test='post-header__plus']")
     WebElement createPostButton;
 
+    @FindBy(xpath = "//form[@class='post-form']")
+    WebElement postForm;
+    @FindBy(xpath = "//input[@placeholder='Title']")
+    WebElement titleField;
+    @FindBy(xpath = "//input[@placeholder='Description']")
+    WebElement descriptionField;
+    @FindBy(xpath = "//textarea[@placeholder='My thoughts. No more than 1000 characters']")
+    WebElement thoughtsField;
+    @FindBy(xpath = "//input[@id='publishDate']")
+    WebElement dateField;
+    @FindBy(xpath = "//*[@accept='image/png,.png,image/jpg,.jpg,image/jpeg,.jpeg']")
+    WebElement fileUpload;
+    @FindBy(xpath = "//*[@data-test='uploaded-image']")
+    WebElement uploadedImages;
+    @FindBy(xpath = "//label[normalize-space()='Save as a draft']")
+    WebElement saveAsDraftButton;
+    @FindBy(xpath = "//button[normalize-space()='Submit']")
+    WebElement submitButton;
+
+
 
 
     public void waitForLoadingHomePage() {
@@ -67,4 +87,28 @@ public class HomePage extends BasePage {
     public void clickOnLogo(){
         logo.click();
     }
+    public void fillAndSubmitPostForm(String title, String description, String thoughts, String filePath,String date){
+        createPostButton();
+        getWait().forVisibility(postForm);
+        Assert.assertTrue(postForm.isDisplayed());
+        getWait().forVisibility(titleField);
+        Assert.assertTrue(titleField.isDisplayed());
+        getWait().forVisibility(descriptionField);
+        Assert.assertTrue(descriptionField.isDisplayed());
+        getWait().forVisibility(thoughtsField);
+        Assert.assertTrue(thoughtsField.isDisplayed());
+        getWait().forVisibility(dateField);
+        Assert.assertTrue(dateField.isDisplayed());
+        titleField.sendKeys(title);
+        descriptionField.sendKeys(description);
+        thoughtsField.sendKeys(thoughts);
+        fileUpload.sendKeys(filePath);
+        getWait().forVisibility(uploadedImages);
+        dateField.clear();
+        dateField.sendKeys(date);
+        submitButton.click();
+    }
+
+
+    
 }

@@ -3,6 +3,7 @@ package e2e.pages;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.Assert;
 
 public class UserProfile extends BasePage{
@@ -15,6 +16,22 @@ public class UserProfile extends BasePage{
     WebElement header;
     @FindBy(xpath = "//span[@data-test='post-header__plus']")
     WebElement editButton;
+    @FindBy(xpath = "//p[@data-test='profileEmail']")
+    WebElement usernameOnProfile;
+    @FindBy(xpath = "//input[@placeholder='Name']")
+    WebElement nameField;
+    @FindBy(xpath = "//input[@placeholder='Surname']")
+    WebElement surnameField;
+    @FindBy(xpath = "//*[@data-test='profileGender']")
+    WebElement genderField;
+    @FindBy(xpath = "//input[@id='birthDate']")
+    WebElement dateOfBirthField;
+    @FindBy(xpath = "//*[@name='phone']")
+    WebElement phoneField;
+    @FindBy(xpath = "//button[normalize-space()='Save']")
+    WebElement saveButton;
+
+
     public void waitForLoadingUserProfile(){
         getWait().forVisibility(header);
         Assert.assertTrue(header.isDisplayed());
@@ -23,5 +40,32 @@ public class UserProfile extends BasePage{
     }
     public void clickOnLogo(){
         logo.click();
+    }
+    public String getUsernameOnProfile(){
+        return usernameOnProfile.getText();
+    }
+    public void editProfile(String name,String surname, String gender, String dateOfBirth, String phone){
+        editButton.click();
+        getWait().forClickable(nameField);
+        getWait().forClickable(surnameField);
+        getWait().forClickable(genderField);
+        getWait().forClickable(dateOfBirthField);
+        getWait().forClickable(phoneField);
+        nameField.clear();
+        nameField.sendKeys(name);
+        surnameField.clear();
+        surnameField.sendKeys(surname);
+        Select select = new Select(genderField);
+        select.selectByVisibleText(gender);
+        dateOfBirthField.clear();
+        dateOfBirthField.sendKeys(dateOfBirth);
+        phoneField.clear();
+        phoneField.sendKeys(phone);
+        saveButton.click();
+        getWait().forInClickable(nameField);
+        getWait().forInClickable(surnameField);
+        getWait().forInClickable(genderField);
+        getWait().forInClickable(dateOfBirthField);
+        getWait().forInClickable(phoneField);
     }
 }
