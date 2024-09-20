@@ -5,6 +5,10 @@ import constant.HomePageOptions;
 import e2e.pages.ContactUsPage;
 import e2e.pages.HomePage;
 import e2e.pages.LoginPage;
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
+import io.qameta.allure.Story;
 import org.testng.annotations.Test;
 
 public class SendContactFormPositiveTest_004 extends BaseTest  {
@@ -13,6 +17,9 @@ public class SendContactFormPositiveTest_004 extends BaseTest  {
     ContactUsPage contactUsPage;
     Faker faker;
     @Test
+    @Severity(SeverityLevel.NORMAL)
+    @Description("Test to verify that a logged-in user can successfully send a message through the Contact Us form.")
+    @Story("As a user, I should be able to send a contact form after logging in.")
     public void sendContactFormPositiveTest() {
         String email = "oleksandr@gmail.com";
         String password = "Gazmanov1234";

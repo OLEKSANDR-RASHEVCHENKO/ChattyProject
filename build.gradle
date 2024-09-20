@@ -37,3 +37,73 @@ test {
     }
     systemProperty 'allure.result.directory', 'build/allure-results'
 }
+task LoginTestPositve(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/LoginTestPositive_001.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+
+task LoginTestNegative(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/LoginTestNegative_002.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+
+task CreatePostNegativeTest(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/CreatePostNegativeTest_006.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+
+
+task CreateEditDeletePostWorkflow(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/CreateEditDeletePostWorkFlow_005.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+
+task SendContactFormPositiveTest(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/SendContactFormPositiveTest_004.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+
+task UserProfileEditPositiveTest(type: Test) {
+    useTestNG() {
+        suites 'src/test/resources/UserProfileEditPositiveTest_003.xml'
+    }
+    testLogging {
+        events "passed", "skipped", "failed", "standardOut", "standardError"
+        exceptionFormat "full"
+    }
+    systemProperty 'allure.result.directory', 'build/allure-results'
+}
+task runAllTests {
+    dependsOn LoginTestPositve, LoginTestNegative, CreatePostNegativeTest, CreateEditDeletePostWorkflow, SendContactFormPositiveTest, UserProfileEditPositiveTest
+}
+
